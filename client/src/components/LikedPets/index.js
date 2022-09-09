@@ -33,7 +33,7 @@ export function LikedPets() {
     if (petState !== "") {
       getLiked({ variables: { petId: petState.likes } });
     }
-  }, [petState]);
+  }, [petState, getLiked]);
 
   if (gettingMe || gettingPets) {
     return <h1>Loading...</h1>;
@@ -128,7 +128,7 @@ export function LikedPets() {
               <img
                 src={yourPet.picture}
                 width={"200px"}
-                alt={`picture of ${yourPet.name}`}
+                alt={`${yourPet.name}`}
               />
             </h3>
             {yourPet._id === petState._id &&
@@ -145,7 +145,7 @@ export function LikedPets() {
                   <img
                     src={theirPet.picture}
                     width="200px"
-                    alt={`picture of ${theirPet.name}`}
+                    alt={`${theirPet.name}`}
                   />
                   <p>Age: {theirPet.age}</p>
                   <p>Gender: {theirPet.gender}</p>
@@ -193,7 +193,7 @@ export function LikedPets() {
                     <img
                       src={theirPet.picture}
                       width="200px"
-                      alt={`picture of ${theirPet.name}`}
+                      alt={`${theirPet.name}`}
                     />
                     <p>Age: {theirPet.age}</p>
                     <p>Gender: {theirPet.gender}</p>
