@@ -13,7 +13,7 @@ export function LikedPets() {
   const [petState, setPet] = useState("");
   const { loading: gettingMe, error: meErr, data: myData } = useQuery(ME);
   const { data: petsData, loading: gettingPets } = useQuery(PETS);
-  const [getMatches, { loading: gettingMatches }] = useLazyQuery(FIND_MATCH);
+  const [getMatches] = useLazyQuery(FIND_MATCH);
 
   const [getLiked, { data: likedPetsData, error, loading }] = useLazyQuery(
     PET,
@@ -22,10 +22,10 @@ export function LikedPets() {
     }
   );
 
-  const [likePet, { error: likeErr }] = useMutation(LIKE_PET, {
+  const [likePet] = useMutation(LIKE_PET, {
     refetchQueries: [ME, PET],
   });
-  const [unlikePet, { error: unlikeErr }] = useMutation(UNLIKE_PET, {
+  const [unlikePet] = useMutation(UNLIKE_PET, {
     refetchQueries: [ME, PET],
   });
 
@@ -125,7 +125,11 @@ export function LikedPets() {
               onClick={() => setPet(me.pets.find((x) => x._id === yourPet._id))}
             >
               {yourPet.name}
-              <img src={yourPet.picture} width={"200px"} />
+              <img
+                src={yourPet.picture}
+                width={"200px"}
+                alt={`picture of ${yourPet.name}`}
+              />
             </h3>
             {yourPet._id === petState._id &&
               likedPetsData?.pet.map((theirPet) => (
@@ -138,7 +142,11 @@ export function LikedPets() {
                       Unlike❌
                     </button>
                   </h3>
-                  <img src={theirPet.picture} width="200px" />
+                  <img
+                    src={theirPet.picture}
+                    width="200px"
+                    alt={`picture of ${theirPet.name}`}
+                  />
                   <p>Age: {theirPet.age}</p>
                   <p>Gender: {theirPet.gender}</p>
                   <p>Breed: {theirPet.breed}</p>
@@ -182,7 +190,11 @@ export function LikedPets() {
                         Like❤️
                       </button>
                     </h3>
-                    <img src={theirPet.picture} width="200px" />
+                    <img
+                      src={theirPet.picture}
+                      width="200px"
+                      alt={`picture of ${theirPet.name}`}
+                    />
                     <p>Age: {theirPet.age}</p>
                     <p>Gender: {theirPet.gender}</p>
                     <p>Breed: {theirPet.breed}</p>

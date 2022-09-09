@@ -5,14 +5,10 @@ import auth from "../../utils/auth";
 import "../../styles/Login.css";
 
 export default function LoginPage() {
-  const [
-    submitLogin,
-    { data: LoginData, loading: loggingIn, error: loginError },
-  ] = useMutation(LOGIN_USER);
-  const [
-    submitSignup,
-    { data: SignupData, loading: creatingUser, error: signupError },
-  ] = useMutation(ADD_USER);
+  const [submitLogin, { loading: loggingIn, error: loginError }] =
+    useMutation(LOGIN_USER);
+  const [submitSignup, { loading: creatingUser, error: signupError }] =
+    useMutation(ADD_USER);
   const [formData, setForm] = useState({
     username: "",
     email: "",
@@ -90,7 +86,7 @@ export default function LoginPage() {
     try {
       const {
         data: {
-          login: { token, user },
+          login: { token },
         },
       } = await submitLogin({ variables: { ...formData } });
 

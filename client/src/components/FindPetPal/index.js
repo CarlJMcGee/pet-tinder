@@ -1,32 +1,20 @@
 // FindPetPal Component
 
 // import React
-import React, { useState } from "react";
-import { useQuery, useLazyQuery, useMutation } from "@apollo/client";
+import React from "react";
+import { useQuery } from "@apollo/client";
 import { ME, PETS } from "../../utils/queries";
-import auth from "../../utils/auth";
 import "../../styles/FindPetPal.css";
 
 function FindPetPal() {
   //TODO: get user data
-  const {
-    loading: gettingUser,
-    data: userData,
-    error: UserDataErr,
-  } = useQuery(ME);
-  const {
-    loading: gettingPets,
-    data: petData,
-    error: PetDataErr,
-  } = useQuery(PETS);
+  const { loading: gettingUser } = useQuery(ME);
+  const { loading: gettingPets } = useQuery(PETS);
   //   const [lastDirection, setLastDirection] = useState();
 
   if (gettingUser || gettingPets) {
     return <h1>Loading...</h1>;
   }
-
-  const { me } = userData;
-  const { pets } = petData;
 
   // const swipe = (direction, nameToDelete) => {
   //   console.log("removing: " + nameToDelete);

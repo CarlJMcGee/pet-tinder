@@ -1,5 +1,4 @@
 import React from "react";
-import Profile from "../../assets/pals.jpeg";
 import "../../styles/Title.css";
 
 // function Title() {
@@ -18,11 +17,9 @@ import "../../styles/Title.css";
 function Title() {
   return (
     <div className="cont ">
-    
       <div id="title">
         <h1 className="webTitle">Pet Pals</h1>
       </div>
-
     </div>
   );
 }

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Select from "react-select";
 import "../../styles/AddPet.css";
 import { ADD_PET } from "../../utils/mutations";
-import Auth from "../../utils/auth";
 
 const Age = [
   { label: "0 - 1", name: "age" },
@@ -68,7 +67,7 @@ const AddPet = () => {
     funFact: "",
   });
 
-  const [addPet, { error }] = useMutation(ADD_PET);
+  const [addPet] = useMutation(ADD_PET);
 
   // image upload related states
   const [selectedFile, selectFile] = useState();
@@ -81,7 +80,7 @@ const AddPet = () => {
   };
 
   // upload picture to imgbb.com, save img url to pet data state
-  const uploadPetPic = async (e) => {
+  const uploadPetPic = async () => {
     if (isFileSelected === "notSelected") {
       return alert(`File not Selected`);
     }
@@ -108,7 +107,7 @@ const AddPet = () => {
   };
 
   const handleChange = async (option) => {
-    const { name, value, label } = option;
+    const { name, label } = option;
     setAddPetData({
       ...addPetData,
       [name]: label,
@@ -120,7 +119,7 @@ const AddPet = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addPet({
+      await addPet({
         variables: { input: { ...addPetData } },
       });
     } catch (e) {

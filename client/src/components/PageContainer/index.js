@@ -80,24 +80,6 @@ import Title from "../Title/title";
 export default function PortfolioContainer() {
   const [currentPage, setCurrentPage] = useState("About");
 
-  const renderPage = () => {
-    if (currentPage === "About") {
-      return <About />;
-    }
-    if (currentPage === "AddPet") {
-      return <AddPet />;
-    }
-    if (currentPage === "FindPetPal") {
-      return <FindPetPal />;
-    }
-    if (currentPage === "Login") {
-      return <LoginPage />;
-    }
-    if (currentPage === "Contact") {
-      return <Contact />;
-    }
-  };
-
   const handlePageChange = (page) => setCurrentPage(page);
 
   return (
